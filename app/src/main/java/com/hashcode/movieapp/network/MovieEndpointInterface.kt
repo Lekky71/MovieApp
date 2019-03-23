@@ -4,7 +4,7 @@ import com.hashcode.movieapp.network.models.GetMoviesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 
-const val apiKey = "28ef9801379c99fb16dc16dc34bf9751"
+const val apiKey = ""
 
 interface MovieEndpointInterface {
 

@@ -4,8 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:padding="10dp">
+
+    <Spinner
+        android:id="@+id/movieSpinner"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:entries="@array/movieOptions"
+        android:layout_marginBottom="10dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/allMoviesRecyclerView"
