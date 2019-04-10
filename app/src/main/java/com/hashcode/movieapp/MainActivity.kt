@@ -7,10 +7,10 @@ import android.support.v7.app.AppCompatActivity
 import com.hashcode.movieapp.fragments.BookmarksFragment
 import com.hashcode.movieapp.fragments.HomeFragment
 import com.hashcode.movieapp.fragments.SearchFragment
+import com.hashcode.movieapp.network.models.Movie
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {

@@ -15,7 +15,9 @@ import retrofit2.Response
 
 enum class MovieType {
     POPULAR,
-    TOP_RATED
+    TOP_RATED,
+    UPCOMING,
+
 }
 class MovieViewModel(application: Application): AndroidViewModel(application) {
 
@@ -32,6 +34,9 @@ class MovieViewModel(application: Application): AndroidViewModel(application) {
             }
             MovieType.TOP_RATED -> {
                 apiEndpoint.getTopRatedMovies()
+            }
+            MovieType.UPCOMING -> {
+                apiEndpoint.getUpComingMovies()
             }
         }
 

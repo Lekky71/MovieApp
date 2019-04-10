@@ -11,7 +11,7 @@
         android:paddingEnd="5dp"
         android:layout_width="match_parent"
         android:layout_gravity="center"
-        tools:listitem="@layout/each_movie_layout"
+        tools:listitem="@layout/movie_layout"
         android:layout_height="wrap_content"
         tools:itemCount="6"
         tools:layoutManager="android.support.v7.widget.GridLayoutManager"
