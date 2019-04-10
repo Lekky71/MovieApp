@@ -67,6 +67,7 @@ class HomeFragment : Fragment() {
                 when(position){
                     0 -> fetchMovies(MovieType.POPULAR)
                     1 -> fetchMovies(MovieType.TOP_RATED)
+                    2 -> fetchMovies(MovieType.UPCOMING)
                 }
             }
 

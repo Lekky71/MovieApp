@@ -9,7 +9,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "movies")
-class Movie : Parcelable {
+class Movie() : Parcelable {
 
     @SerializedName("vote_count")
     @Expose
@@ -55,113 +55,51 @@ class Movie : Parcelable {
     @Expose
     var releaseDate: String? = null
 
-     constructor(`in`: Parcel) {
-        this.voteCount = `in`.readValue(Int::class.javaPrimitiveType!!.classLoader) as Int
-        this.id = `in`.readValue(Int::class.javaPrimitiveType!!.classLoader) as Int
-        this.isVideo = `in`.readValue(Boolean::class.javaPrimitiveType!!.classLoader) as Boolean
-        this.voteAverage = `in`.readValue(Double::class.javaPrimitiveType!!.classLoader) as Double
-        this.title = `in`.readValue(String::class.java.classLoader) as String
-        this.popularity = `in`.readValue(Double::class.javaPrimitiveType!!.classLoader) as Double
-        this.posterPath = `in`.readValue(String::class.java.classLoader) as String
-        this.originalLanguage = `in`.readValue(String::class.java.classLoader) as String
-        this.originalTitle = `in`.readValue(String::class.java.classLoader) as String
-        `in`.readList(this.genreIds, Int::class.java.classLoader)
-        this.backdropPath = `in`.readValue(String::class.java.classLoader) as String
-        this.isAdult = `in`.readValue(Boolean::class.javaPrimitiveType!!.classLoader) as Boolean
-        this.overview = `in`.readValue(String::class.java.classLoader) as String
-        this.releaseDate = `in`.readValue(String::class.java.classLoader) as String
+    constructor(parcel: Parcel) : this() {
+        voteCount = parcel.readInt()
+        id = parcel.readInt()
+        isVideo = parcel.readByte() != 0.toByte()
+        voteAverage = parcel.readDouble()
+        title = parcel.readString()
+        popularity = parcel.readDouble()
+        posterPath = parcel.readString()
+        originalLanguage = parcel.readString()
+        originalTitle = parcel.readString()
+        backdropPath = parcel.readString()
+        isAdult = parcel.readByte() != 0.toByte()
+        overview = parcel.readString()
+        releaseDate = parcel.readString()
     }
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
-    constructor() {}
-
-    /**
-     *
-     * @param genreIds
-     * @param id
-     * @param title
-     * @param releaseDate
-     * @param overview
-     * @param posterPath
-     * @param originalTitle
-     * @param voteAverage
-     * @param originalLanguage
-     * @param adult
-     * @param backdropPath
-     * @param voteCount
-     * @param video
-     * @param popularity
-     */
-    constructor(
-        voteCount: Int,
-        id: Int,
-        video: Boolean,
-        voteAverage: Double,
-        title: String,
-        popularity: Double,
-        posterPath: String,
-        originalLanguage: String,
-        originalTitle: String,
-        genreIds: List<Int>,
-        backdropPath: String,
-        adult: Boolean,
-        overview: String,
-        releaseDate: String
-    ) : super() {
-        this.voteCount = voteCount
-        this.id = id
-        this.isVideo = video
-        this.voteAverage = voteAverage
-        this.title = title
-        this.popularity = popularity
-        this.posterPath = posterPath
-        this.originalLanguage = originalLanguage
-        this.originalTitle = originalTitle
-        this.genreIds = genreIds
-        this.backdropPath = backdropPath
-        this.isAdult = adult
-        this.overview = overview
-        this.releaseDate = releaseDate
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeValue(voteCount)
-        dest.writeValue(id)
-        dest.writeValue(isVideo)
-        dest.writeValue(voteAverage)
-        dest.writeValue(title)
-        dest.writeValue(popularity)
-        dest.writeValue(posterPath)
-        dest.writeValue(originalLanguage)
-        dest.writeValue(originalTitle)
-        dest.writeList(genreIds)
-        dest.writeValue(backdropPath)
-        dest.writeValue(isAdult)
-        dest.writeValue(overview)
-        dest.writeValue(releaseDate)
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(voteCount)
+        parcel.writeInt(id)
+        parcel.writeByte(if (isVideo) 1 else 0)
+        parcel.writeDouble(voteAverage)
+        parcel.writeString(title)
+        parcel.writeDouble(popularity)
+        parcel.writeString(posterPath)
+        parcel.writeString(originalLanguage)
+        parcel.writeString(originalTitle)
+        parcel.writeString(backdropPath)
+        parcel.writeByte(if (isAdult) 1 else 0)
+        parcel.writeString(overview)
+        parcel.writeString(releaseDate)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object {
-        @JvmField
-        val CREATOR: Parcelable.Creator<Movie> = object : Creator<Movie> {
+    companion object CREATOR : Creator<Movie> {
+        override fun createFromParcel(parcel: Parcel): Movie {
+            return Movie(parcel)
+        }
 
-
-            override fun createFromParcel(`in`: Parcel): Movie {
-                return Movie(`in`)
-            }
-
-            override fun newArray(size: Int): Array<Movie?> {
-                return arrayOfNulls(size)
-            }
-
+        override fun newArray(size: Int): Array<Movie?> {
+            return arrayOfNulls(size)
         }
     }
+
 
 }
