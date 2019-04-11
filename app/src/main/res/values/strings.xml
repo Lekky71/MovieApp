@@ -3,9 +3,22 @@
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_bookmarks">Bookmarks</string>
+    <string name="text_textView1">About this movie</string>
+    <string name="text_textView2">Coding is cool but exasperating</string>
+    <string name="text_textView3">Release Date: </string>
+    <string name="text_textView4">Movie Genre </string>
+    <string name="text_textView5">Romance </string>
+    <string name="text_textView6">Reviews </string>
+    <string name="text_textView7">I love this movie </string>
+    <string name="text_textView8">Ratings:  </string>
+    <string name="image_description">movie image display </string>
+
 
     <string-array name="movieOptions">
         <item>Popular</item>
         <item>Top Rated</item>
     </string-array>
+    <string name="title_activity_movie_details">MovieDetails</string>
+    <string name="action_settings">Settings</string>
+    <string name="date_released">21-03-2018</string>
 </resources>

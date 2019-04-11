@@ -1,6 +1,7 @@
 package com.hashcode.movieapp.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.hashcode.movieapp.MovieDetails
 import com.hashcode.movieapp.R
 import com.hashcode.movieapp.network.GlideApp
 import com.hashcode.movieapp.network.models.Movie
@@ -35,10 +37,19 @@ class MovieAdapter(val context: Context, var allmovies: ArrayList<Movie>) : Recy
             .into(holder.movieImageView)
     }
 
-    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val movieImageView = itemView.findViewById<ImageView>(R.id.movieImageView)!!
 
         val movieTextView = itemView.findViewById<TextView>(R.id.movieTextView)!!
+
+        init {
+            itemView.setOnClickListener{
+                val movie = allmovies[adapterPosition]
+                val intent = Intent(context, MovieDetails::class.java)
+                intent.putExtra("data", movie)
+                context.startActivity(intent)
+            }
+        }
 
     }
 
